@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: viraj-vaibhav-portfolio
+    runtime: node
+    plan: free
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /
