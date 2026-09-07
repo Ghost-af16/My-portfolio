@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: viraj-vaibhav-portfolio
+    name: virajcodes
     runtime: node
     plan: free
     buildCommand: npm ci && npm run build
