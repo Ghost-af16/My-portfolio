@@ -1,0 +1,56 @@
+import { Mail, MessageCircle, Phone } from "lucide-react";
+import { SiteSettings } from "@/lib/types";
+
+export function ContactCTA({ settings }: { settings: SiteSettings }) {
+  const whatsappUrl = settings.whatsapp
+    ? `https://wa.me/${settings.whatsapp}?text=${encodeURIComponent(`Hi ${settings.name}, I have a project in mind`)}`
+    : null;
+
+  const phoneUrl = settings.phone ? `tel:${settings.phone}` : null;
+
+  return (
+    <section id="contact-cta" className="py-24 bg-surface-light border-y border-border relative overflow-hidden">
+      <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
+        <p className="terminal-label mb-4">viraj@portfolio:~$ contact</p>
+        <h2 className="text-3xl md:text-5xl font-semibold text-heading mb-6">
+          Want to build something?
+        </h2>
+        <p className="text-muted mb-10 text-lg font-light max-w-xl mx-auto">
+          I&apos;m always open to discussing projects, ideas, and opportunities. The easiest way to reach me is by email.
+        </p>
+
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          {whatsappUrl ? (
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-3 px-10 py-4 bg-accent text-on-accent font-bold tracking-widest uppercase text-sm hover:bg-accent-hover transition-colors duration-300"
+            >
+              <MessageCircle className="w-5 h-5" />
+              WhatsApp
+            </a>
+          ) : (
+            <a
+              href={`mailto:${settings.email}`}
+              className="inline-flex items-center justify-center gap-3 px-10 py-4 bg-accent text-on-accent font-bold tracking-widest uppercase text-sm hover:bg-accent-hover transition-colors duration-300"
+            >
+              <Mail className="w-5 h-5" />
+              Get in Touch
+            </a>
+          )}
+
+          {phoneUrl && (
+            <a
+              href={phoneUrl}
+              className="inline-flex items-center justify-center gap-3 px-10 py-4 border border-border-accent text-heading font-bold tracking-widest uppercase text-sm hover:border-accent hover:text-accent transition-colors duration-300"
+            >
+              <Phone className="w-5 h-5" />
+              Call Now
+            </a>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
